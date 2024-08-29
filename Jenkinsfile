@@ -1,22 +1,15 @@
-//  trying the retry feature in jenkins file
-// retry ===> multiple attempts
-// timeout -===> time limit enforced
-
-// pipeline for retry
-
 pipeline {
     agent any
     stages{
-        stage ('Build' ){
+        stage('TimeoutStage'){
             steps {
-                echo "******* Entering Build Block *******"
-                retry (3) {
-                    echo "welcome to D4"
-                    error " Testing the retry block"
+                timeout(time:5, unit: 'SECONDS'){
+                    echo "sleeping for 60 sec"
+                    sleep 60
+                   // manager approval
+                
                 }
-                echo "******* After 3 retrys *******"   
             }
         }
     }
-
 }
